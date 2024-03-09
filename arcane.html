@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ARCANE</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style2.css" />
+    <style>
+      header {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        background-color: #fffdd0; /* Background color for the navbar */
+        z-index: 1000; /* Make sure it's above other content */
+        padding: 10px; /* Adjust as needed */
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Optional: Add shadow for visual separation */
+      }
+
+      .logo {
+        display: inline-block;
+        height: 80px; /* Adjust as needed */
+        width: auto; /* Adjust as needed */
+      }
+
+      .retro {
+        display: inline-block;
+        float: right;
+        margin-top: 10px; /* Adjust as needed */
+      }
+
+      .retro ul {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+      }
+
+      .retro ul li {
+        display: inline-block;
+        margin-right: 20px; /* Adjust as needed */
+      }
+
+      .retro ul li a {
+        text-decoration: none;
+        color: #fff; /* Text color for navbar links */
+        font-family: "Press Start 2P", cursive;
+      }
+
+      .quotes {
+        position: fixed;
+        top: 150px; /* Adjust as needed */
+        left: 10px; /* Adjust as needed */
+      }
+
+      .quote-generator {
+        font-family: "Press Start 2P", cursive;
+        color: #333; /* Adjust as needed */
+      }
+
+      .button-quote {
+        background-color: #333; /* Adjust as needed */
+        color: #fff; /* Adjust as needed */
+        border: none;
+        padding: 10px 20px;
+        cursor: pointer;
+        font-family: "Press Start 2P", cursive;
+        margin-top: 10px; /* Adjust as needed */
+      }
+
+      .spotify {
+        position: absolute;
+        top: 500px; /* Adjust as needed */
+        right: 10px; /* Adjust as needed */
+        border-radius: 12px; /* Adjust as needed */
+        z-index: 1000;
+      }
+      .Bookstick {
+        position: absolute;
+        z-index: 1000;
+        left: 150px;
+        top: 250px;
+      }
+
+      .coolstick {
+        position: absolute;
+        z-index: 1000;
+        right: 100px;
+        top: 250px;
+      }
+
+      .arrow {
+        position: absolute;
+        z-index: 1000;
+        right:10px;
+        top: 150px;
+      }
+
+      .text2 {
+        position: absolute;
+        z-index: 1000;
+        left: 1230px;
+        top: 0;
+        font-family: "Press Start 2P", cursive;
+        color: #333; /* Adjust as needed */
+
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <!--navbar controller icon-->
+      <a href="#"> <img class="logo" src="Coffee.png" alt="logo" /></a>
+
+      <nav class="retro">
+        <ul>
+          <!--navbar buttons-->
+          <!--y button-->
+          <li class="button-one"><a href="pomodoro-timer-main/turf.html" target="_blank">POMODORO</a></li>
+          <!--x button-->
+          <li class="button-two"><a href="pacman-js-master/pacman.html" target="_blank">PACMAN</a></li>
+          <!--a button-->
+          <li class="button-three"><a href="https://medium.com/@kai505" target="_blank">MEDIUM</a></li>
+          <!--b button-->
+          <li class="button-four"><a href="https://discord.gg/VxGRJ8aF" target="_blank">DISCORD</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <img class="Bookstick" src="Bookstick.png" alt="" height="200" />
+    <img class="coolstick" src="coolstick.png" alt="" height="200" />
+    <img class="arrow" src="arrow.png" alt="" height="200" />
+
+    <div class="quotes">
+      <h1 class="quote-generator">
+        BORED? <br />
+        READ A BOOK!
+      </h1>
+      <div id="quoteDisplay">
+        <img id="bookCover" style="width: 100px" src="" />
+      </div>
+      <div class="text2">
+        <h1>
+          Checkout <br/>
+          This<br/>
+          CoolStuff
+        </h1>
+      </div>
+      <button onclick="newBook()" class="button-quote">New Book</button>
+      <script>
+        var images = [
+          {image:"Dorian.jpg" },
+          {image:"Trial.jpg"},
+          {image:"whitenights.jpg"},
+          {image:"Kafka.webp"},
+          {image:"Hobbit.webp"},
+          {image:"1Q84.jpg"},
+          {image:"Secret.jpg"},
+          {image:"https://m.media-amazon.com/images/I/81JgX8VgZiL._AC_UL800_FMwebp_QL65_.jpg"},
+          {image:"https://m.media-amazon.com/images/I/71CBWHK035L._AC_UL800_FMwebp_QL65_.jpg"},
+          {image:"https://m.media-amazon.com/images/I/91pXKpUfGgL._AC_UL800_FMwebp_QL65_.jpg"},
+        ];
+        
+
+        let lastBook = -1; // this is to prevent offering the same book twice
+
+        function newBook() {
+          let randomNumber;
+          do {
+            randomNumber = Math.floor(Math.random() * images.length);
+          } while (randomNumber === lastBook);
+          lastBook = randomNumber;
+          document.getElementById("bookCover").src = images[randomNumber].image;
+        }
+      </script>
+    </div>
+
+    <div class="cat">
+      <div class="ear ear--left"></div>
+      <div class="ear ear--right"></div>
+      <div class="face">
+        <div class="eye eye--left">
+          <div class="eye-pupil"></div>
+        </div>
+        <div class="eye eye--right">
+          <div class="eye-pupil"></div>
+        </div>
+        <div class="muzzle"></div>
+      </div>
+    </div>
+    <iframe
+      class="spotify"
+      style="border-radius: 12px"
+      src="https://open.spotify.com/embed/playlist/5YKJQzHzc2cloWoHTekQGD?utm_source=generator&theme=0"
+      width="100%"
+      height="352"
+      frameborder="0"
+      allowfullscreen=""
+      allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+      loading="lazy"
+    ></iframe>
+  </body>
+</html>

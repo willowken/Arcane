@@ -1,0 +1,595 @@
+$color-black: #161616;
+$color-white: #fff;
+$size: 170px; // (Fully responsive)
+
+body {
+    margin: 0;
+    padding: 0;
+}
+
+.Slug{
+	position: fixed;
+	top: 10px;
+	left: 0;
+	z-index: 1000;
+}
+
+
+
+// Cat
+.cat {
+	position: relative;
+	height: $size;
+	width: $size * 1.13;
+}
+
+// Ears
+.ear {
+	position: absolute;
+	top: -30%;
+	height: 60%;
+	width: 25%;
+	background: $color-white;
+	
+	// Ear hair
+	&::before,
+	&::after {
+		content: '';
+		position: absolute;
+		bottom: 24%;
+		height: 10%;
+		width: 5%;
+		border-radius: 50%;
+		background: $color-black;
+	}
+	
+	&::after {
+		transform-origin: 50% 100%;
+	}
+}
+
+.ear--left {
+	left: -7%;
+	border-radius: 70% 30% 0% 0% / 100% 100% 0% 0%;
+	transform: rotate(-15deg);
+	
+	&::before,
+	&::after {
+		right: 10%;
+	}
+	
+	&::after {
+		transform: rotate(-45deg);
+	}
+}
+
+.ear--right {
+	right: -7%;
+	border-radius: 30% 70% 0% 0% / 100% 100% 0% 0%;
+	transform: rotate(15deg);
+	
+	&::before,
+	&::after {
+		left: 10%;
+	}
+	
+	&::after {
+		transform: rotate(45deg);
+	}
+}
+
+// Face
+.face {
+	position: absolute;
+	height: 100%;
+	width: 100%;
+	background: $color-black;
+	border-radius: 50%;
+}
+
+// Eyes
+.eye {
+	position: absolute;
+	top: 35%;
+	height: 30%;
+	width: 31%;
+	background: $color-white;
+	border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+	
+	// Eyelids
+	&::after {
+		content: '';
+		position: absolute;
+		top: 0;
+		left: 0;
+		height: 0;
+		width: 100%;
+		border-radius: 0 0 50% 50% / 0 0 40% 40%;
+		background: $color-black;
+		animation: blink 4s infinite ease-in;
+	}
+	
+	@keyframes blink {
+		0% { height: 0; }
+		90% { height: 0; }
+		92.5% { height: 100%; }
+		95% { height: 0; }
+		97.5% { height: 100%; }
+		100% { height: 0; }
+	}
+	
+	// Tips of the eyes
+	&::before {
+		content: '';
+		position: absolute;
+		top: 60%;
+		height: 10%;
+		width: 15%;
+		background: $color-white;
+		border-radius: 50%;
+	}
+}
+
+.eye--left {
+	left: 0;
+	
+	&::before {
+		right: -5%;
+	}
+}
+
+.eye--right {
+	right: 0;
+	
+	&::before {
+		left: -5%;
+	}
+}
+
+// Pupils
+.eye-pupil {
+	position: absolute;
+	top: 25%;
+	height: 50%;
+	width: 20%;
+	background: $color-black;
+	border-radius: 50%;
+	animation: look-around 4s infinite;
+	
+	@keyframes look-around {
+		0% { transform: translate(0) }
+		5% { transform: translate(50%, -25%) }
+		10% { transform: translate(50%, -25%) }
+		15% { transform: translate(-100%, -25%) }
+		20% { transform: translate(-100%, -25%) }
+		25% { transform: translate(0, 0) }
+		100% { transform: translate(0, 0) }
+	}
+	
+	.eye--left & {
+		right: 30%;
+	}
+	
+	.eye--right & {
+		left: 30%;
+	}
+	
+	// Glare on the pupil
+	&::after {
+		content: '';
+		position: absolute;
+		top: 30%;
+		right: -5%;
+		height: 20%;
+		width: 35%;
+		border-radius: 50%;
+		background: $color-white;
+	}
+}
+
+// Muzzle
+.muzzle {
+	position: absolute;
+	top: 60%;
+	left: 50%;
+	height: 6%;
+	width: 10%;
+	background: $color-white;
+	transform: translateX(-50%);
+	border-radius: 50% 50% 50% 50% / 30% 30% 70% 70%;
+}
+
+/* General page styling */
+html {
+	height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+	background: $color-black;
+}
+
+.animation-container {
+	display: block;
+	position: relative;
+	width: 800px;
+	max-width: 100%;
+	margin: 0 auto;
+	
+	.lightning-container {
+		position: absolute;
+		top: 50%;
+		left: 0;
+		display: flex;
+		transform: translateY(-50%);
+		
+		.lightning {
+			position: absolute;
+			display: block;
+			height: 12px;
+			width: 12px;
+			border-radius: 12px;
+			transform-origin: 6px 6px;
+
+			animation-name: woosh;
+			animation-duration: 1.5s;
+			animation-iteration-count: infinite;
+			animation-timing-function: cubic-bezier(0.445, 0.050, 0.550, 0.950);
+			animation-direction: alternate;
+
+			&.white {
+				background-color: white;
+				box-shadow: 0px 50px 50px 0px transparentize(white, 0.7);
+			}
+
+			&.red {
+				background-color: #fc7171;
+				box-shadow: 0px 50px 50px 0px transparentize(#fc7171, 0.7);
+				animation-delay: 0.2s;
+			}
+		}
+	}
+	
+	
+	.boom-container {
+		position: absolute;
+		display: flex;
+		width: 80px;
+		height: 80px;
+		text-align: center;
+		align-items: center;
+		transform: translateY(-50%);
+    left: 200px;
+    top: -145px;
+		
+		.shape {
+			display: inline-block;
+			position: relative;
+			opacity: 0;
+			transform-origin: center center;
+			
+			&.triangle {
+				width: 0;
+				height: 0;
+				border-style: solid;
+				transform-origin: 50% 80%;
+				animation-duration: 1s;
+				animation-timing-function: ease-out;
+				animation-iteration-count: infinite;
+				margin-left: -15px;
+				border-width: 0 2.5px 5px 2.5px;
+				border-color: transparent transparent #42e599 transparent;
+				animation-name: boom-triangle;
+				
+				&.big {
+					margin-left: -25px;
+					border-width: 0 5px 10px 5px;
+					border-color: transparent transparent #fade28 transparent;
+					animation-name: boom-triangle-big;
+				}
+			}
+			
+			&.disc {
+				width: 8px;
+				height: 8px;
+				border-radius: 100%;
+				background-color: #d15ff4;
+				animation-name: boom-disc;
+				animation-duration: 1s;
+				animation-timing-function: ease-out;
+				animation-iteration-count: infinite;
+			}
+			
+			&.circle {
+				width: 20px;
+				height: 20px;
+				animation-name: boom-circle;
+				animation-duration: 1s;
+				animation-timing-function: ease-out;
+				animation-iteration-count: infinite;
+				border-radius: 100%;
+				margin-left: -30px;
+				
+				&.white {
+					border: 1px solid white;
+				}
+				
+				&.big {
+					width: 40px;
+					height: 40px;
+					margin-left: 0px;
+					
+					&.white {
+						border: 2px solid white;
+					}
+				}
+			}
+			
+			&:after {
+				background-color: rgba(178, 215, 232, 0.2);
+			}
+		}
+		
+		.shape {
+			&.triangle, &.circle, &.circle.big, &.disc {
+				animation-delay: .38s;
+				animation-duration: 3s;
+			}
+			
+			&.circle {
+				animation-delay: 0.6s;
+			}
+		}
+		
+		&.second {
+			left: 485px;
+			top: 155px;
+			.shape {
+				&.triangle, &.circle, &.circle.big, &.disc {
+					animation-delay: 1.9s;
+				}
+				&.circle {
+					animation-delay: 2.15s;
+				}
+			}
+		}
+	}
+}
+
+@keyframes woosh {
+	0% {
+		width: 12px;
+		transform: translate(0px, 0px) rotate(-35deg);
+	}
+	15% {
+		width: 50px;
+	}
+	30% {
+		width: 12px;
+		transform: translate(214px, -150px) rotate(-35deg);
+	}
+	30.1% {
+		transform: translate(214px, -150px) rotate(46deg);
+	}
+	50% {
+		width: 110px;
+	}
+	70% {
+		width: 12px;
+		transform: translate(500px, 150px) rotate(46deg);
+	}
+	70.1% {
+		transform: translate(500px, 150px) rotate(-37deg);
+	}
+	
+	85% {
+		width: 50px;
+	}
+	100% {
+		width: 12px;
+		transform: translate(700px, 0) rotate(-37deg);
+	}
+}
+
+@keyframes boom-circle {
+	0% {
+		opacity: 0;
+	}
+	5% {
+		opacity: 1;
+	}
+	30% {
+		opacity: 0;
+		transform: scale(3);
+	}
+	100% {
+	}
+}
+
+@keyframes boom-triangle-big {
+	0% {
+		opacity: 0;
+	}
+	5% {
+		opacity: 1;
+	}
+	
+	40% {
+		opacity: 0;
+		transform: scale(2.5) translate(50px, -50px) rotate(360deg);
+	}
+	100% {
+	}
+}
+
+@keyframes boom-triangle {
+	0% {
+		opacity: 0;
+	}
+	5% {
+		opacity: 1;
+	}
+	
+	30% {
+		opacity: 0;
+		transform: scale(3) translate(20px, 40px) rotate(360deg);
+	}
+	
+	100% {
+	}
+}
+
+@keyframes boom-disc {
+	0% {
+		opacity: 0;
+	}
+	5% {
+		opacity: 1;
+	}
+	40% {
+		opacity: 0;
+		transform: scale(2) translate(-70px, -30px);
+	}
+	100% {
+		
+	}
+}
+
+//TODO: 
+
+* {
+	margin: 0;
+	padding: 0;
+  }
+  
+  
+  /*header styling*/
+  header {
+	  background-color: #D3D3D9; 
+	  display: flex; 
+	  justify-content: flex-start;
+	  align-items: center;
+	  padding: 10px 5px;
+	}
+  
+	  /*icon sizing*/
+   header img {
+	 width:52px; 
+	 height:52px; 
+	}
+  
+  /*nav button styling*/
+  nav ul { 
+	list-style: none; 
+	  }
+  
+   nav ul li {
+		  display: inline-block;
+		  text-transform: uppercase;
+		  font-family: 'Press Start 2P', cursive;
+		  font-size: 1.5vh;
+	  }
+  
+  nav ul li a {
+	text-decoration: none;
+	color: #fff;
+  }
+  
+  /*about button*/
+  .button-one {
+	background-color: #3BB273;
+	padding: 10px 2px;
+	border-radius: 10%;
+	box-shadow: -3px 3px 3px #339963;
+	}
+  
+  /*projects button*/
+  .button-two {
+	background-color: #4D9DE0;
+	padding: 10px 2px;
+	border-radius: 10%;
+	box-shadow: -3px 3px 3px #2F8DDA;
+	}
+  
+  /*blog button*/
+  .button-three {
+	background-color: #E15554;
+	padding: 10px 2px;
+	border-radius: 10%;
+	box-shadow: -3px 3px 3px #DA2F2F;
+	}
+  
+  /*contact button*/
+  .button-four {
+	background-color: #E1BC29;
+	padding: 10px 2px;
+	border-radius: 10%;
+	box-shadow: -3px 3px 3px #C4A31C;
+	}
+  
+  /*button click hover effect*/
+  nav ul li:hover {
+	transform: scale(.9, .9);
+  }
+  
+  /*animation for icon*/
+  .logo:hover {
+	  animation: rumble 0.3s linear;
+  }
+  
+  @keyframes rumble {
+	  25% {transform: rotate(10deg);}
+	  75% {transform: rotate(-20deg);}
+  }
+  
+  #snes-box {
+	text-align: center;
+	margin-right: 0px;
+  }
+  
+	#snes {
+	  width: 70%;
+	  height: 70%;
+	  margin: 0px auto;
+	}
+  
+  @media only screen and (min-width: 768px) {
+  
+	  header {
+		  justify-content: space-between;
+	}
+   
+	header img {
+	  padding-left: 10px;
+	  width: 56px;
+	  height:66px;
+	  }
+  
+  nav ul li {
+	padding: 10px 15px;
+	margin-right: 20px;
+	font-size: 1em;
+	}
+}
+  
+  @media only screen and (min-width: 1024px) {
+  
+  header {
+	justify-content: space-between;
+	}
+  
+  .logo{
+	padding-left: 20px;
+	width: 200px;
+	height: 200px;
+	}
+	  
+  nav li {
+	padding: 10px 15px;
+	margin-right: 20px;
+	font-size: 1.2em;
+	}
+	
+  } 
+   
+
+  
